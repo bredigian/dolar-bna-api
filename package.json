@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "tsc",
-    "dev": "pnpm exec nodemon ./src/index.ts"
+    "dev": "pnpm exec nodemon ./src/index.ts",
+    "vercel-build": "pnpx install playwright && echo Runnning Scrapper server..."
   },
   "keywords": [],
   "author": {
