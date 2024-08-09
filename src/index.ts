@@ -1,3 +1,4 @@
+import { DolarController } from "./controlllers/app.controller"
 import Express from "express"
 import { config } from "dotenv"
 import cors from "cors"
@@ -9,10 +10,9 @@ const app = Express()
 app.use(cors())
 app.use(Express.json())
 
-const PORT = process.env.PORT ?? 3000
+const PORT = 4040
 
-app.get("/", (_, res) => {
-  res.json({ message: "Express.js + TypeScript Backend" })
-})
+//Recibe 3 query params (year, month, day) y devuelve los datos correspondientes a la fecha.
+app.get("/", DolarController.getByDate)
 
-app.listen(PORT, () => console.log(`Server running at PORT ${PORT}`))
+app.listen(PORT, () => console.log(`Dolar BNA Scrapper API at PORT ${PORT}`))
