@@ -1,1 +1,5 @@
-export const WEB_TO_SCRAP = process.env.WEB_TO_SCRAP
+import { config } from "dotenv"
+
+config()
+
+export const URL_TO_SCRAP = process.env.URL_TO_SCRAP

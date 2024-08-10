@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 
 import { CotizacionDolar } from "../types/dolar.types"
 import { DateTime } from "luxon"
-import { WEB_TO_SCRAP } from "../const/api"
+import { URL_TO_SCRAP } from "../const/api"
 import { chromium } from "playwright"
 
 type TQuery = {
@@ -35,7 +35,7 @@ export const DolarController = {
       const selectedMontn = date.monthLong
       const selectedYear = date.year
 
-      await page.goto(`${WEB_TO_SCRAP}/mes/${selectedMontn}-${selectedYear}`)
+      await page.goto(`${URL_TO_SCRAP}/mes/${selectedMontn}-${selectedYear}`)
 
       const data = (await page.$$eval("#dataTable tbody tr", (rows) => {
         return rows.map((row) => {
