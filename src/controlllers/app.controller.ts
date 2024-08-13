@@ -71,12 +71,14 @@ export const DolarController = {
           code: 404,
         })
 
+      console.log(dataOfSelectedDate)
       return res.status(200).json(dataOfSelectedDate)
     } catch (error) {
       console.error(error)
       return res.status(500).json({
         message: "Internal Server Error",
         code: 500,
+        error,
       })
     }
   },
