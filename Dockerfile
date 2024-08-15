@@ -2,9 +2,11 @@ FROM node:22
 
 WORKDIR /app
 
-COPY . /app/
+COPY package*.json  /app/
 
 RUN npm install -g pnpm && pnpm install && pnpm exec playwright install chromium --with-deps
+
+COPY . .
 
 EXPOSE 4040
 

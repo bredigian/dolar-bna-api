@@ -1,8 +1,16 @@
 version: "3.9"
 services:
-  dolar-bna-api:
+  api:
     build: .
+    container_name: api
     ports:
       - "4040:4040"
+    env_file:
+      - .env
+  db:
+    image: mongo
+    container_name: db
+    ports:
+      - "27018:27017"
     env_file:
       - .env

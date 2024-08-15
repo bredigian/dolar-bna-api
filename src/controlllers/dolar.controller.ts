@@ -1,6 +1,12 @@
 import { Request, Response } from "express"
+import {
+  addCotizacion,
+  findAll,
+  findCotizacion,
+} from "../services/cotizacion.service"
 
-import { CotizacionDolar } from "../types/dolar.types"
+import { $connect } from "../lib/db"
+import { Cotizacion } from "../types/cotizacion.types"
 import { DateTime } from "luxon"
 import { URL_TO_SCRAP } from "../const/api"
 import { chromium } from "playwright"
@@ -14,9 +20,6 @@ type TQuery = {
 export const DolarController = {
   getByDate: async (req: Request, res: Response) => {
     try {
-      const browser = await chromium.launch({ headless: true })
-      const page = await browser.newPage()
-
       const { day, month, year } = req?.query as TQuery
 
       if (!day || !month || !year)
@@ -32,8 +35,19 @@ export const DolarController = {
         Number(day)
       ).setLocale("es-AR")
 
+      await $connect()
+
+      const exists: Cotizacion | undefined | null = await findCotizacion(
+        date.toJSDate()
+      )
+
+      if (exists) return res.status(200).json(exists)
+
       const selectedMontn = date.monthLong
       const selectedYear = date.year
+
+      const browser = await chromium.launch({ headless: true })
+      const page = await browser.newPage()
 
       await page.goto(`${URL_TO_SCRAP}/mes/${selectedMontn}-${selectedYear}`)
 
@@ -56,7 +70,7 @@ export const DolarController = {
             variacion: cells[3]?.textContent?.trim(),
           }
         })
-      })) as CotizacionDolar[]
+      })) as Cotizacion[]
 
       await browser.close()
 
@@ -71,8 +85,24 @@ export const DolarController = {
           code: 404,
         })
 
-      console.log(dataOfSelectedDate)
+      const added = await addCotizacion(dataOfSelectedDate)
+      console.log(added)
+
       return res.status(200).json(dataOfSelectedDate)
+    } catch (error) {
+      console.error(error)
+      return res.status(500).json({
+        message: "Internal Server Error",
+        code: 500,
+        error,
+      })
+    }
+  },
+  getStoredData: async (_: Request, res: Response) => {
+    try {
+      await $connect()
+
+      return res.status(200).json(await findAll())
     } catch (error) {
       console.error(error)
       return res.status(500).json({
