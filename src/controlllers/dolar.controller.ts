@@ -35,11 +35,15 @@ export const DolarController = {
         Number(day)
       ).setLocale("es-AR")
 
+      console.log(date)
+
       await $connect()
 
       const exists: Cotizacion | undefined | null = await findCotizacion(
         date.toJSDate()
       )
+
+      console.log(exists)
 
       if (!exists)
         return res.status(404).json({
