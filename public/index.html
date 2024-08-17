@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dolar BNA API</title>
+    <meta
+      name="description"
+      content="Obtené valores historicos del dolar oficial del Banco Nación."
+    />
+    <meta
+      name="keywords"
+      content="dolar, banco nacion, bna, api, historial, historico, oficial, datos"
+    />
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+    }
+    body {
+      padding: 2rem;
+
+      h1 {
+        font-weight: 400;
+      }
+      height: 100vh;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 16px;
+
+      #example {
+        display: inline-flex;
+        gap: 4px;
+      }
+
+      #note {
+        font-weight: 500;
+      }
+
+      footer {
+        flex-grow: 1;
+        display: inline-flex;
+        justify-content: start;
+        align-items: end;
+        p {
+          font-weight: 500;
+        }
+      }
+    }
+  </style>
+  <body>
+    <h1>Dolar BNA API</h1>
+    <p>
+      ¡Hola! Esto es una API para obtener valores historicos del dolar oficial
+      del Banco Nación.
+    </p>
+    <p>
+      ¿Cómo usar? Simple. En la URL tenés que agregar TRES parámetros (day,
+      month, year) junto a sus valores correspondientes. Por ejemplo: day=1,
+      month=8, year=2024.
+    </p>
+    <div id="example">
+      <p>Ejemplo en concreto:</p>
+      <a href="https://dolar-bna-api.vercel.app/?day=1&month=8&year=2024">
+        https://dolar-api-bna.vercel.app/?day=1&month=8&year=2024
+      </a>
+    </div>
+    <p id="note">NOTA: Los datos inician desde Enero de 2011.</p>
+    <footer>
+      <p>Hecho por Gianluca Bredice Developer 🤙</p>
+    </footer>
+  </body>
+</html>
