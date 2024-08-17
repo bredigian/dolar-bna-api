@@ -13,3 +13,5 @@ const PORT = 4040
 app.get("/", DolarController.getByDate)
 
 app.listen(PORT, () => console.log(`Dolar BNA Scrapper API at PORT ${PORT}`))
+
+export default app
