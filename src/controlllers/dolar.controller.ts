@@ -1,9 +1,9 @@
 import { Request, Response } from "express"
+import { findAll, findCotizacion } from "../services/cotizacion.service"
 
 import { $connect } from "../lib/db"
 import { Cotizacion } from "../types/cotizacion.types"
 import { DateTime } from "luxon"
-import { findCotizacion } from "../services/cotizacion.service"
 import path from "path"
 
 type TQuery = {
@@ -51,6 +51,18 @@ export const DolarController = {
         } as Cotizacion)
 
       return res.status(200).json(exists)
+    } catch (error) {
+      console.error(error)
+      return res.status(500).json({
+        message: "Internal Server Error",
+        code: 500,
+        error,
+      })
+    }
+  },
+  getAll: async (_: Request, res: Response) => {
+    try {
+      return res.status(200).json(await findAll())
     } catch (error) {
       console.error(error)
       return res.status(500).json({
