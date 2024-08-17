@@ -40,7 +40,7 @@ export const DolarController = {
       await $connect()
 
       const exists: Cotizacion | undefined | null = await findCotizacion(
-        date.toJSDate()
+        date.toISO() as string
       )
 
       console.log(exists)
