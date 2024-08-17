@@ -29,11 +29,9 @@ export const DolarController = {
           name: "Bad Request",
         })
 
-      const date = DateTime.local(
-        Number(year),
-        Number(month),
-        Number(day)
-      ).setLocale("es-AR")
+      const date = DateTime.local(Number(year), Number(month), Number(day))
+        .setLocale("es-AR")
+        .setZone("America/Argentina/Buenos_Aires")
 
       console.log(date)
 
