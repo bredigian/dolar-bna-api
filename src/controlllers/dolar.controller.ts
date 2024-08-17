@@ -13,14 +13,21 @@ type TQuery = {
 }
 
 export const DolarController = {
+  getHome: async (_: Request, res: Response) => {
+    return res.sendFile(
+      path.join(__dirname, "..", "..", "public", "index.html")
+    )
+  },
   getByDate: async (req: Request, res: Response) => {
     try {
       const { day, month, year } = req?.query as TQuery
 
       if (!day || !month || !year)
-        return res.sendFile(
-          path.join(__dirname, "..", "..", "public", "index.html")
-        )
+        return res.status(400).json({
+          message: "Los parametros no fueron recibidos.",
+          error: 400,
+          name: "Bad Request",
+        })
 
       const date = DateTime.local(
         Number(year),
