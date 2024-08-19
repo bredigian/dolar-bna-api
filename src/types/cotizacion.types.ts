@@ -1,6 +1,6 @@
 export type Cotizacion = {
   _id?: string
-  fecha: Date | string
+  fecha: string
   compra: number | null
   venta: number | null
   variacion: string | null

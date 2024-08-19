@@ -3,7 +3,6 @@ import { findAll, findCotizacion } from "../services/cotizacion.service"
 
 import { $connect } from "../lib/db"
 import { Cotizacion } from "../types/cotizacion.types"
-import { DateTime } from "luxon"
 import path from "path"
 
 type TQuery = {
@@ -29,24 +28,16 @@ export const DolarController = {
           name: "Bad Request",
         })
 
-      const date = DateTime.local(Number(year), Number(month), Number(day))
-        .setLocale("es-AR")
-        .setZone("America/Argentina/Buenos_Aires")
-
-      console.log(date)
+      const date = `${day}-${month}-${year}`
 
       await $connect()
 
-      const exists: Cotizacion | undefined | null = await findCotizacion(
-        date.toISO() as string
-      )
-
-      console.log(exists)
+      const exists: Cotizacion | undefined | null = await findCotizacion(date)
 
       if (!exists)
         return res.status(404).json({
           message: "No se encontraron datos de la fecha indicada.",
-          fecha: date.toISO(),
+          fecha: date,
           compra: null,
           venta: null,
           variacion: null,

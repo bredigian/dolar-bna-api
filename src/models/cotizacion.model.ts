@@ -6,11 +6,11 @@ const CotizacionSchema: Schema<Cotizacion> = new Schema(
   {
     venta: Number,
     compra: Number,
-    fecha: Date,
+    fecha: String,
     variacion: String,
   },
   { _id: true, timestamps: true }
 )
 
 export default models.Cotizacion ||
-  model<Cotizacion>("MCotizacion", CotizacionSchema, "cotizaciones")
+  model<Cotizacion>("Cotizacion", CotizacionSchema, "cotizaciones")
