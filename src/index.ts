@@ -12,7 +12,6 @@ const PORT = 4040
 //Recibe 3 query params (year, month, day) y devuelve los datos correspondientes a la fecha.
 app.get("/", DolarController.getHome)
 app.get("/cotizacion", DolarController.getByDate)
-app.get("/cotizacion/all", DolarController.getAll)
 
 app.listen(PORT, () => console.log(`Dolar BNA Scrapper API at PORT ${PORT}`))
 
