@@ -50,6 +50,13 @@
         p {
           font-weight: 500;
         }
+        #author {
+          text-decoration: none;
+          color: inherit;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
   </style>
@@ -74,7 +81,13 @@
     </div>
     <p id="note">NOTA: Los datos inician desde Enero de 2011.</p>
     <footer>
-      <p>Hecho por Gianluca Bredice Developer 🤙</p>
+      <p>
+        Hecho por
+        <a id="author" href="https://devbredicegian.site"
+          >Gianluca Bredice Developer</a
+        >
+        🤙
+      </p>
     </footer>
   </body>
 </html>
