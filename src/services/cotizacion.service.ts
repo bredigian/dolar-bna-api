@@ -11,8 +11,10 @@ export const findLast = async (date: string) => {
   let lastDateWithCotizacion = DateTime.fromObject({
     year: +year,
     month: +month,
-    day: +day - 1,
-  }).setZone()
+    day: +day,
+  })
+    .setZone()
+    .minus({ days: 1 })
 
   while (!finded) {
     const dateString = `${lastDateWithCotizacion.day}-${lastDateWithCotizacion.month}-${lastDateWithCotizacion.year}`
