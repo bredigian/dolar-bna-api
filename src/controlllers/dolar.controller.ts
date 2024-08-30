@@ -1,7 +1,7 @@
+import { $connect, $disconnect } from "../lib/db"
 import { Request, Response } from "express"
 import { findCotizacion, findLast } from "../services/cotizacion.service"
 
-import { $connect } from "../lib/db"
 import { Cotizacion } from "../types/cotizacion.types"
 import { DateTime } from "luxon"
 import { dateIsValid } from "../lib/validate"
@@ -84,6 +84,8 @@ export const DolarController = {
           updatedAt,
         } as Cotizacion)
       }
+
+      await $disconnect()
 
       return res.status(200).json(exists)
     } catch (error) {
