@@ -85,8 +85,8 @@ describe("cotizacion tests", () => {
       compra: 849,
       fecha: "19-4-2024",
       variacion: "0,06%",
-      createdAt: DateTime.fromISO("2024-08-19T22:01:38.836Z").toUTC(),
-      updatedAt: DateTime.fromISO("2024-08-19T22:01:38.836Z").toUTC(),
+      createdAt: new Date("2024-08-19T22:01:38.836Z"),
+      updatedAt: new Date("2024-08-19T22:01:38.836Z"),
     }
 
     const { compra, venta, variacion, fecha, _id, createdAt, updatedAt } =

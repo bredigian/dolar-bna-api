@@ -72,10 +72,12 @@ export const DolarController = {
         const { compra, venta, variacion, fecha, _id, createdAt, updatedAt } =
           lastCotizacion
 
+        await $disconnect()
+
         return res.status(404).json({
           message:
             "No se encontraron datos de la fecha indicada. Se le devuelve los datos de la fecha mas cercana.",
-          _id,
+          _id: _id?.toString(),
           venta,
           compra,
           fecha,
@@ -90,6 +92,8 @@ export const DolarController = {
       return res.status(200).json(exists)
     } catch (error) {
       console.error(error)
+      await $disconnect()
+
       return res.status(500).json({
         message: "Internal Server Error",
         code: 500,
