@@ -1,4 +1,4 @@
-# Dolar BNA API Scrapper
+# Dolar BNA API
 
 API desarrollado con Express.js para la obtención de datos históricos del valor del dolar oficial de BNA.
 
