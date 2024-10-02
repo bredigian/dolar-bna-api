@@ -9,3 +9,6 @@ API desarrollado con Express.js para la obtención de datos históricos del valo
 - TypeScript
 - MongoDB
 - Docker
+
+## Deploy
+https://dolar-bna-api.vercel.app
